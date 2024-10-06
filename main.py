@@ -13,9 +13,7 @@ def get_book_text(path):
 
 def count_book_words(book_text):
     words_list = book_text.split()
-    words_total = 0
-    for word in words_list:
-        words_total += 1 
+    words_total = len(words_list)
     return words_total
 
 def characters_dictionary(book_text):
@@ -35,9 +33,6 @@ def characters_dictionary(book_text):
                 chars_dictionary[char] += 1
     return chars_dictionary
             
-
-
-
             
 
 
