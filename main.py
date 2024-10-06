@@ -1,5 +1,5 @@
 def main():
-    book_url = "books/frankenstein.txt"
+    book_url = get_user_book_input()
     book_text = get_book_text(book_url)
     total_book_words = count_book_words(book_text)
     chars_appearances = characters_dictionary(book_text)
@@ -12,9 +12,14 @@ def main():
     
 
 def get_book_text(path):
-    with open(path) as book:
-        book_content = book.read()
-        return book_content
+    try:
+        with open(path) as book:
+            book_content = book.read()
+            return book_content
+    except FileNotFoundError:
+        print(f"The {path} was not found. Please try again!")
+    except Exception as error:
+        print(error)
 
 def count_book_words(book_text):
     words_list = book_text.split()
@@ -50,6 +55,11 @@ def display_all_occurences(list):
     list.sort(reverse=True, key=sort_after)
     for dict in list:
         print(f'The {dict['letter']} character was found {dict['number']} times')
+
+
+def get_user_book_input():
+    book_path = str(input('Please type in your .txt file path from your current folder:'))
+    return book_path
 
 
 main()
